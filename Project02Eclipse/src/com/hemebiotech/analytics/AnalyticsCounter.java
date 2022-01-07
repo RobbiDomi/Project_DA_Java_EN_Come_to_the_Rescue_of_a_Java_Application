@@ -42,41 +42,24 @@ public class AnalyticsCounter {
 	 *
 	 */
 
-	public static Map<String, Integer> readFile() {//Fonction
-
-		File occurence = new File("Project02Eclipse/symptoms.txt");
-					// creating hashmap to store the symptoms's occurences
+	public static Map<String, Integer> countSymptoms(List <String> symptoms) {//Fonction
+		// creating hashmap to store the symptoms's occurences
 		Map<String, Integer> map = new HashMap<>();
-					// creating a BufferReader to read the file symptoms.txt
+
 		/**
 		 * @param  BufferedReader to read the symptoms's file.txt
 		 *
 		 */
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(occurence));
-			String line = reader.readLine();
-			while (line != null) {
-					//storing the different symptoms and occurrences
-				if (map.containsKey(line)) {
-					map.put(line, map.get(line) + 1);
-					//implementing the number of symptoms in the map
-				} else {
-					map.put(line, 1);
-				}
-					// reading another line on the symptoms's files
-				line = reader.readLine();
+		for (String symptom : symptoms) {
+			//storing the different symptoms and occurrences
+			if (map.containsKey(symptom)) {
+				map.put(symptom, map.get(symptom) + 1);
+				//implementing the number of symptoms in the map
+			} else {
+				map.put(symptom, 1);
 			}
-					// closing the BufferReader
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return map;
-		/**
-		 * @return returning the map/symptoms for use in other functions
-		 *
-		 */
-
 
 	}
 	/**
@@ -85,10 +68,13 @@ public class AnalyticsCounter {
 	 */
 	public static void main(String args[])  {
 				//retrieving Hashmap's readfile information
-		Map<String, Integer> map = readFile();
+		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		List<String> symptoms = reader.GetSymptoms();
 				//displaying the occurrence of elements
-		System.out.println(map);
-		writeResult(map);
+		Map<String, Integer> counter = countSymptoms (symptoms);
+
+		System.out.println(counter);
+		writeResult(counter);
 	}
 }
 
