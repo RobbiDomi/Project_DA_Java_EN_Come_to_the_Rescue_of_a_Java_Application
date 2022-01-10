@@ -12,7 +12,7 @@ public class AnalyticsCounter {
 	 *
 	 */
 
-	public static void writeResult(Map<String, Integer> map) {
+	public static void writeResult(Map<String, Integer> map) {//Fonction
 		// TODO write to the result.txt map
 	   /**
 	    * @param  FileWriter to create file to load result
@@ -46,10 +46,6 @@ public class AnalyticsCounter {
 		// creating hashmap to store the symptoms's occurences
 		Map<String, Integer> map = new HashMap<>();
 
-		/**
-		 * @param  BufferedReader to read the symptoms's file.txt
-		 *
-		 */
 		for (String symptom : symptoms) {
 			//storing the different symptoms and occurrences
 			if (map.containsKey(symptom)) {
@@ -66,7 +62,7 @@ public class AnalyticsCounter {
 	 * @summary  priting the result
 	 *
 	 */
-	public static void main(String args[])  {
+	public static void main(String args[])  {//Fonction
 				//retrieving Hashmap's readfile information
 		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
 		List<String> symptoms = reader.GetSymptoms();
