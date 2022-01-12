@@ -5,18 +5,30 @@ import java.io.*;
 import java.util.*;
 
 /**
- * @summary  creating the function to count symptoms's occurrences
+ * @summary  Counting symptoms and write the result on a file
  *
  */
 
 public class AnalyticsCounter {
 
+	public static void main(String args[])  {
+
+		//retrieving Hashmap's readfile information
+		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		List<String> symptoms = reader.GetSymptoms();
+		//counting the occurrence of elements
+		Map<String, Integer> counter = countSymptoms (symptoms);
+
+		System.out.println(counter);
+		writeResult(counter);
+	}
+
 	/**
-	 * @summary  writing fontion the symptoms's occurences
+	 * @summary  counting the occurence
 	 *
 	 */
 
-	public static Map<String, Integer> countSymptoms(List <String> symptoms) {//Fonction
+	public static Map<String, Integer> countSymptoms(List <String> symptoms) {
 		// creating hashmap to store the symptoms's occurences
 		Map<String, Integer> map = new TreeMap<>();
 
@@ -24,7 +36,7 @@ public class AnalyticsCounter {
 			//storing the different symptoms and occurrences
 			if (map.containsKey(symptom)) {
 				map.put(symptom, map.get(symptom) + 1);
-				//implementing the number of symptoms in the map
+				//  the number of symptoms in the map
 			} else {
 				map.put(symptom, 1);
 			}
@@ -33,8 +45,7 @@ public class AnalyticsCounter {
 
 	}
 
-	public static void writeResult(Map<String, Integer> map) {//Fonction
-		// TODO write to the result.out map
+	public static void writeResult(Map<String, Integer> map) {
 		/**
 		 * @param  FileWriter to create file to load result
 		 *
@@ -43,7 +54,7 @@ public class AnalyticsCounter {
 			FileWriter fw = new FileWriter("Project02Eclipse/result.out");
 			BufferedWriter bw = new BufferedWriter(fw);
 
-			// parcourir la map de String
+			// Scanning the map of string
 			for (String symptom : map.keySet()) {
 				bw.write(symptom + " : " + map.get(symptom) + "\n");
 			}
@@ -54,22 +65,6 @@ public class AnalyticsCounter {
 			e.getStackTrace();
 		}
 	}
-	/**
-	 * @summary  priting the result
-	 *
-	 */
-	public static void main(String args[])  {//Fonction
 
-				//retrieving Hashmap's readfile information
-		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
-		List<String> symptoms = reader.GetSymptoms();
-				//displaying the occurrence of elements
-		Map<String, Integer> counter = countSymptoms (symptoms);
-
-		System.out.println(counter);
-		writeResult(counter);
-
-
-	}
 }
 
