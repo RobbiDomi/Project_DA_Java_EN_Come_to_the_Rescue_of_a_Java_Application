@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * @summary  Counting symptoms and write the result on a file
+ * @summary  Printing and Writing the result on a file
  *
  */
 
@@ -24,7 +24,7 @@ public class AnalyticsCounter {
 	}
 
 	/**
-	 * @summary  counting the occurence
+	 * @summary  counting occurences
 	 *
 	 */
 
